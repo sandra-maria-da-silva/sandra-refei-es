@@ -1,0 +1,90 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+<meta charset="UTF-8">
+<title>Sandra Refeições</title>
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<style>
+body { font-family: Arial; margin:0; background:#f5f5f5; }
+header { background:#444; color:white; text-align:center; padding:20px; }
+.container { padding:15px; }
+.card { background:white; padding:15px; margin-bottom:10px; border-radius:10px; }
+button { width:100%; padding:12px; background:#333; color:white; border:none; }
+input, select { width:100%; padding:10px; margin:5px 0; }
+</style>
+</head>
+
+<body>
+
+<header>
+<h1>🍱 Sandra Refeições</h1>
+<p>Mini iFood de marmitas</p>
+</header>
+
+<div class="container">
+
+<div class="card">
+
+<h3>Dados do cliente</h3>
+<input id="nome" placeholder="Nome">
+<input id="endereco" placeholder="Endereço">
+<input id="bairro" placeholder="Bairro">
+
+<h3>Pedido</h3>
+
+<select id="tamanho">
+<option value="12">Pequena R$12</option>
+<option value="15">Grande R$15</option>
+</select>
+
+<select id="proteina">
+<option>Frango</option>
+<option>Carne</option>
+<option>Peixe</option>
+<option>Strogonoff</option>
+</select>
+
+<h3>Pagamento</h3>
+<select id="pagamento">
+<option value="pix">Pix</option>
+<option value="cartao">Cartão (+R$1)</option>
+</select>
+
+<button onclick="enviar()">Finalizar Pedido</button>
+
+</div>
+
+</div>
+
+<script>
+function enviar(){
+
+let nome = nome.value;
+let endereco = endereco.value;
+let bairro = bairro.value;
+
+let total = parseFloat(tamanho.value) + 2;
+
+if(pagamento.value === "cartao") total += 1;
+
+let msg = `🍱 PEDIDO SANDRA REFEIÇÕES:
+
+Nome: ${nome}
+Endereço: ${endereco}
+Bairro: ${bairro}
+
+Total: R$${total}`;
+
+window.open("https://wa.me/5581985427194?text=" + encodeURIComponent(msg));
+
+// PAGAMENTO REAL (Mercado Pago)
+setTimeout(() => {
+  window.location.href = "SEU_LINK_MERCADO_PAGO_AQUI";
+}, 1000);
+
+}
+</script>
+
+</body>
+</html>

@@ -1,0 +1,116 @@
+<!DOCTYPE html>
+
+<html lang="pt-BR">
+<head>
+<meta charset="UTF-8">
+<title>Sandra Refeições</title>
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<style>
+body { font-family: Arial; background:#f2f2f2; margin:0; }
+header { background:#555; color:white; text-align:center; padding:20px; }
+.container { padding:20px; }
+.box { background:white; padding:15px; border-radius:10px; margin-bottom:15px; }
+select, button { width:100%; padding:10px; margin:8px 0; border-radius:5px; }
+.btn { background:#444; color:white; border:none; font-weight:bold; }
+.btn:hover { background:#222; }
+</style>
+
+</head>
+
+<body>
+
+<header>
+<h1>🍛 Sandra Refeições</h1>
+<p>Monte sua marmita</p>
+</header>
+
+<div class="container">
+
+<div class="box">
+
+<label>Tamanho:</label> <select id="tamanho">
+
+<option value="12">Pequena - R$12</option>
+<option value="15">Grande - R$15</option>
+</select>
+
+<label>Feijão:</label> <select id="feijao">
+
+<option>Feijão Preto</option>
+<option>Feijão Mulato</option>
+<option>Feijão Macassar</option>
+</select>
+
+<label>Acompanhamento:</label> <select id="acomp">
+
+<option>Arroz</option>
+<option>Macarrão</option>
+</select>
+
+<label>Extra:</label> <select id="extra">
+
+<option>Legumes</option>
+<option>Vinagrete</option>
+<option>Purê de Batata</option>
+</select>
+
+<label>Proteína:</label> <select id="proteina">
+
+<option>Galinha Guisada</option>
+<option>Frango na Chapa</option>
+<option>Panqueca de Carne</option>
+<option>Panqueca de Frango</option>
+<option>Fígado Acebolado</option>
+<option>Filé de Peixe</option>
+<option>Strogonoff de Frango</option>
+</select>
+
+<label>Forma de pagamento:</label> <select id="pagamento">
+
+<option value="pix">Pix</option>
+<option value="cartao">Cartão (+R$1)</option>
+</select>
+
+<button class="btn" onclick="pedido()">Finalizar Pedido</button>
+
+</div>
+
+<div class="box" id="resumo"></div>
+
+</div>
+
+<script>
+function pedido(){
+
+let t = parseFloat(document.getElementById("tamanho").value);
+let feijao = document.getElementById("feijao").value;
+let acomp = document.getElementById("acomp").value;
+let extra = document.getElementById("extra").value;
+let proteina = document.getElementById("proteina").value;
+let pagamento = document.getElementById("pagamento").value;
+
+let total = t + 2; // frete
+
+if(pagamento === "cartao") total += 1;
+
+let msg = `🍛 Pedido - Sandra Refeições:
+Tamanho: R$${t}
+Feijão: ${feijao}
+Acompanhamento: ${acomp}
+Extra: ${extra}
+Proteína: ${proteina}
+Pagamento: ${pagamento}
+Total: R$${total}`;
+
+document.getElementById("resumo").innerHTML = `
+<h3>🧾 Total: R$ ${total}</h3>
+<p>Pedido enviado para WhatsApp</p>
+`;
+
+window.open("https://wa.me/5581985427194?text=" + encodeURIComponent(msg));
+}
+</script>
+
+</body>
+</html>
